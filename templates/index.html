@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load menu_display %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <style>
+        a{
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .active{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        {% draw_menu 'menu' %}
+    </div>
+
+
+    <script>
+        let menu = document.querySelector('.menu');
+        let parser = new DOMParser();
+        let decodedHtml = parser.parseFromString(menu.innerHTML, 'text/html').body.firstChild;
+        menu.innerHTML = decodedHtml.data;
+    </script>
+</body>
+</html>
